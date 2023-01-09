@@ -1,5 +1,6 @@
 name: allure-junit5-maven
-on:[push]
+
+on: [ push ]
 
 jobs:
   runtest:
