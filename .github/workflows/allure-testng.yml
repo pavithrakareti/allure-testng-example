@@ -40,7 +40,7 @@ jobs:
       - name: upload artifact   
         uses: actions/upload-pages-artifact@v1
         with:
-          path: allure-history
+          path: ./allure-history
   deploy:
     # Add a dependency to the build job
     needs: runtest
