@@ -3,11 +3,13 @@ name: allure-junit5-maven
 on: [ push ]
 
 jobs:
+  # Build job
   build:
-      runs-on: ubuntu-latest
-     # Deploy job
+    # <Not provided for brevity>
+    # At a minimum this job should upload artifacts using actions/upload-pages-artifact
+
+  # Deploy job
   deploy:
-    runs-on: ubuntu-latest
     # Add a dependency to the build job
     needs: build
 
@@ -19,6 +21,9 @@ jobs:
     # Deploy to the github-pages environment
     environment:
       name: github-pages
+
+    # Specify runner + deployment step
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
