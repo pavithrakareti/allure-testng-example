@@ -5,6 +5,7 @@
 
 To generate Allure Report you should perform following steps:
 
+
 ```bash
 $ git clone git@github.com:allure-examples/allure-testng-example.git
 $ ./mvnw clean test site
