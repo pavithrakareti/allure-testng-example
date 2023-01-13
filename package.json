@@ -1,0 +1,47 @@
+{
+    "name": "Reactjs-root",
+    "version": "0.0.1",
+    "scripts": {
+        "bootstrap": "corepack enable && corepack prepare pnpm@7.1.0 --activate && pnpm install",
+        "build": "pnpm --recursive run build",
+        "clean": "pnpm --recursive run clean",
+        "fix": "pnpm run fix:format && pnpm run fix:eslint",
+        "fix:eslint": "eslint --fix modules/*/src",
+        "fix:format": "prettier --write .",
+        "lint": "pnpm run lint:eslint && pnpm run lint:format",
+        "lint:eslint": "eslint --max-warnings 0 modules/*/src",
+        "lint:format": "prettier --check .",
+        "lint-staged": "lint-staged --config .lint-staged.config.js",
+        "pre-commit": "pnpm run lint-staged",
+        "prepare": "husky install",
+        "prepublishOnly": "pnpm --recursive run prepublishOnly",
+        "props:generate": "pnpm run --recursive mdx-proptable-theming",
+        "storybook": "pnpm --filter ./modules/mds-docs run storybook",
+        "test": "pnpm --recursive run test:ci",
+        "ui-tests": "pnpm run ui-tests:preparation && start-server-and-test ui-tests:storybook http://localhost:6006 ui-tests:test",
+        "ui-tests:preparation": "pnpm --filter ./modules/mds-library run build && cd mds-ui-tests && pip3 install -r requirements.txt && cd -",
+        "ui-tests:storybook": "pnpm --filter ./modules/mds-docs run storybook",
+        "ui-tests:test": "cd mds-ui-tests && python3 -m pytest src/tests -B chrome --url http://localhost:6006/ -H -n 8 --alluredir=allure-results --junitxml=output.xml $PYTEST_EXTRA_OPTS"
+    },
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "~5.30.7",
+        "@typescript-eslint/parser": "~5.30.7",
+        "eslint": "~8.20.0",
+        "eslint-config-prettier": "~8.5.0",
+        "eslint-import-resolver-typescript": "~3.2.1",
+        "eslint-plugin-import": "~2.26.0",
+        "eslint-plugin-jsx-a11y": "~6.6.0",
+        "eslint-plugin-react": "~7.30.1",
+        "eslint-plugin-react-hooks": "~4.6.0",
+        "husky": "~8.0.1",
+        "lint-staged": "~13.0.3",
+        "prettier": "~2.7.1",
+        "start-server-and-test": "~1.14.0",
+        "typescript": "~4.7.4"
+    },
+    "packageManager": "pnpm@7.1.0",
+    "engines": {
+        "node": ">=16.13.2",
+        "pnpm": "^7.1.0"
+    }
+}
