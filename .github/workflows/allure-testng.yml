@@ -20,8 +20,6 @@ jobs:
              node-version: "16.15.0"
       - name: Publish
         run: |
-            npm whoam i
-            npm config list
             npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}      
